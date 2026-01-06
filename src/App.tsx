@@ -1,10 +1,11 @@
 
-import SignIn from "./_auth/forms/SignIn"
-import Signup from "./_auth/forms/Signup"
 import "./global.css"
 import {Routes , Route} from "react-router-dom"
 import { Home } from "./root/pages"
-
+import AuthLayout from "./_auth/AuthLayout"
+import RootLayout from "./root/RootLayout"
+import SignInForm from "./_auth/forms/SignInForm"
+import SignupForm from "./_auth/forms/SignupForm"
 
 
 function App() {
@@ -12,11 +13,14 @@ function App() {
    <main className="flex h-screen">
      <Routes>
       {/* public route */}
-      <Route path = "/sign-up" element = {<Signup/>}/>
-      <Route path = "/sign-in" element = {<SignIn/>}/>
-
+      <Route element = {<AuthLayout/>}>
+        <Route path = "/sign-up" element = {<SignInForm/>}/>
+        <Route path = "/sign-in" element = {<SignupForm/>}/>
+      </Route>
        {/* private route */}
+       <Route  element = {<RootLayout/>}>
        <Route index element = {<Home/>}/>
+       </Route>
      </Routes>
    </main>
   )
