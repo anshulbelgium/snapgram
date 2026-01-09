@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { validationFormSchema } from "@/lib/validations"
 import { NavLink } from "react-router-dom"
+import { createNewUser } from "@/lib/appwrite/api"
 
 
 const SignupForm = () => {
@@ -19,8 +20,9 @@ const SignupForm = () => {
     },
   })
 
-   function onSubmit(values: z.infer<typeof validationFormSchema>) {
-     console.log(values);
+   async function onSubmit(values: z.infer<typeof validationFormSchema>) {
+    const newUser = await createNewUser(values)
+    console.log(newUser)
    }
 
   return (
